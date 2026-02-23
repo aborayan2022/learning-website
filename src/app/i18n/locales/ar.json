@@ -76,7 +76,17 @@
     "resetNow": "إعادة تعيين كلمة المرور",
     "invalidResetLink": "رابط إعادة التعيين غير صالح أو منتهي الصلاحية. يرجى طلب رابط جديد.",
     "minPassword": "يجب أن تكون كلمة المرور ٨ أحرف على الأقل",
-    "passwordsNoMatch": "كلمات المرور غير متطابقة"
+    "passwordsNoMatch": "كلمات المرور غير متطابقة",
+    "validEmail": "يرجى إدخال بريد إلكتروني صحيح",
+    "minPassword6": "يجب أن تكون كلمة المرور ٦ أحرف على الأقل",
+    "firstNameRequired": "الاسم الأول مطلوب",
+    "lastNameRequired": "اسم العائلة مطلوب",
+    "selectRole": "يرجى اختيار الدور",
+    "failedResetLink": "فشل إرسال رابط إعادة التعيين. حاول مرة أخرى.",
+    "firstNamePlaceholder": "الاسم الأول",
+    "lastNamePlaceholder": "اسم العائلة",
+    "phonePlaceholder": "+٢٠ ١xx xxx xxxx",
+    "minPasswordPlaceholder": "٨ أحرف على الأقل"
   },
   "home": {
     "heroTitle1": "تعلّم من الأفضل،",

@@ -1,11 +1,12 @@
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router';
 import { MainLayout } from './components/layout/MainLayout';
 import { AuthLayout } from './components/layout/AuthLayout';
 import { AuthGuard } from './core/guards/AuthGuard';
 import { GuestGuard } from './core/guards/GuestGuard';
 import { RoleGuard } from './core/guards/RoleGuard';
 import LoadingSpinner from './components/shared/LoadingSpinner';
+import { ErrorBoundary } from './components/shared/ErrorBoundary';
 import { Toaster } from 'sonner';
 
 // Lazy-loaded pages
@@ -24,6 +25,7 @@ const AdminDashboard = lazy(() => import('./features/dashboard/admin/AdminDashbo
 const SubscriptionPlansPage = lazy(() => import('./features/subscriptions/SubscriptionPlansPage'));
 const ResetPasswordPage = lazy(() => import('./features/auth/ResetPasswordPage'));
 const PaymentPage = lazy(() => import('./features/payment/PaymentPage'));
+const NotFoundPage = lazy(() => import('./features/not-found/NotFoundPage'));
 
 function Fallback() {
   return <LoadingSpinner fullPage text="Loading..." />;
@@ -31,11 +33,12 @@ function Fallback() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Suspense fallback={<Fallback />}>
-        <Routes>
-          {/* ── Home page (self-contained Figma export – has its own navbar) ── */}
-          <Route path="/" element={<><HomePage /><Toaster position="top-right" richColors closeButton /></>} />
+    <ErrorBoundary>
+      <BrowserRouter>
+        <Suspense fallback={<Fallback />}>
+          <Routes>
+            {/* ── Home page (self-contained Figma export – has its own navbar) ── */}
+            <Route path="/" element={<HomePage />} />
 
           {/* ── Public routes with MainLayout ── */}
           <Route element={<MainLayout />}>
@@ -93,10 +96,12 @@ export default function App() {
             />
           </Route>
 
-          {/* Catch-all → home */}
-          <Route path="*" element={<Navigate to="/" replace />} />
+          {/* Catch-all → 404 */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
+      <Toaster position="top-right" richColors closeButton />
     </BrowserRouter>
+    </ErrorBoundary>
   );
 }

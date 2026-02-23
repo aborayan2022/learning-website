@@ -5,6 +5,7 @@ import { z } from 'zod';
 import { authService } from '../../core/services/auth.service';
 import { useState } from 'react';
 import { Loader2, ArrowLeft, CheckCircle } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const schema = z.object({
   email: z.string().email('Please enter a valid email'),
@@ -16,6 +17,7 @@ export default function ForgotPasswordPage() {
   const [sent, setSent] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const {
     register,
@@ -32,7 +34,7 @@ export default function ForgotPasswordPage() {
       await authService.forgotPassword(data.email);
       setSent(true);
     } catch {
-      setError('Failed to send reset link. Please try again.');
+      setError(t('auth.failedResetLink'));
     } finally {
       setIsLoading(false);
     }
@@ -43,16 +45,16 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md px-6 text-center">
         <CheckCircle className="w-16 h-16 text-green-400 mx-auto mb-4" />
         <h1 className="font-['Source_Sans_Pro'] font-bold text-2xl text-white mb-2">
-          Check Your Email
+          {t('auth.checkEmail')}
         </h1>
         <p className="text-gray-400 font-['Poppins'] mb-6">
-          We've sent a password reset link to your email address.
+          {t('auth.resetLinkSent')}
         </p>
         <Link
           to="/auth/login"
           className="text-white hover:underline font-['Poppins'] flex items-center justify-center gap-2"
         >
-          <ArrowLeft className="w-4 h-4" /> Back to Login
+          <ArrowLeft className="w-4 h-4" /> {t('auth.backToLogin')}
         </Link>
       </div>
     );
@@ -62,10 +64,10 @@ export default function ForgotPasswordPage() {
     <div className="w-full max-w-md px-6">
       <div className="text-center mb-8">
         <h1 className="font-['Source_Sans_Pro'] font-bold text-3xl text-white mb-2">
-          Forgot Password?
+          {t('auth.forgotPasswordTitle')}
         </h1>
         <p className="text-gray-400 font-['Poppins']">
-          Enter your email and we'll send you a reset link
+          {t('auth.forgotPasswordSubtitle')}
         </p>
       </div>
 
@@ -77,11 +79,11 @@ export default function ForgotPasswordPage() {
         )}
 
         <div>
-          <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">Email Address</label>
+          <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">{t('auth.emailAddress')}</label>
           <input
             {...register('email')}
             type="email"
-            placeholder="you@example.com"
+            placeholder={t('auth.emailPlaceholder')}
             className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins']"
           />
           {errors.email && <p className="mt-1 text-red-400 text-xs">{errors.email.message}</p>}
@@ -93,7 +95,7 @@ export default function ForgotPasswordPage() {
           className="w-full py-3 bg-white text-[#131313] font-['Poppins'] font-semibold rounded-lg hover:bg-gray-100 transition disabled:opacity-50 flex items-center justify-center gap-2"
         >
           {isLoading && <Loader2 className="w-5 h-5 animate-spin" />}
-          {isLoading ? 'Sending...' : 'Send Reset Link'}
+          {isLoading ? t('auth.sending') : t('auth.sendResetLink')}
         </button>
       </form>
 
@@ -102,7 +104,7 @@ export default function ForgotPasswordPage() {
           to="/auth/login"
           className="text-gray-400 hover:text-white transition font-['Poppins'] text-sm flex items-center justify-center gap-2"
         >
-          <ArrowLeft className="w-4 h-4" /> Back to Login
+          <ArrowLeft className="w-4 h-4" /> {t('auth.backToLogin')}
         </Link>
       </p>
     </div>

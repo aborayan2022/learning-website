@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuthStore } from '../../store/auth.store';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const registerSchema = z
   .object({
@@ -27,6 +28,7 @@ export default function RegisterPage() {
   const { register: registerUser, isLoading, error, clearError } = useAuthStore();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
   const defaultRole = searchParams.get('role') as 'parent' | 'teacher' | null;
@@ -65,9 +67,9 @@ export default function RegisterPage() {
           <span className="font-['Poppins'] font-semibold text-[20px] text-white">Utopia</span>
         </Link>
         <h1 className="font-['Source_Sans_Pro'] font-bold text-3xl text-white mb-2">
-          Create Your Account
+          {t('auth.createAccount')}
         </h1>
-        <p className="text-gray-400 font-['Poppins']">Join the Utopia learning community</p>
+        <p className="text-gray-400 font-['Poppins']">{t('auth.joinCommunity')}</p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -82,7 +84,7 @@ export default function RegisterPage() {
 
         {/* Role Selection */}
         <div>
-          <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">I am a...</label>
+          <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">{t('auth.iAmA')}</label>
           <div className="grid grid-cols-2 gap-3">
             <label
               className={`flex items-center justify-center gap-2 p-3 rounded-lg border cursor-pointer transition font-['Poppins'] ${
@@ -92,7 +94,7 @@ export default function RegisterPage() {
               }`}
             >
               <input {...register('role')} type="radio" value="parent" className="hidden" />
-              <span>🎓 Parent / Student</span>
+              <span>🎓 {t('auth.parentStudent')}</span>
             </label>
             <label
               className={`flex items-center justify-center gap-2 p-3 rounded-lg border cursor-pointer transition font-['Poppins'] ${
@@ -102,7 +104,7 @@ export default function RegisterPage() {
               }`}
             >
               <input {...register('role')} type="radio" value="teacher" className="hidden" />
-              <span>📚 Teacher</span>
+              <span>📚 {t('auth.teacher')}</span>
             </label>
           </div>
           {errors.role && <p className="mt-1 text-red-400 text-xs">{errors.role.message}</p>}
@@ -111,22 +113,22 @@ export default function RegisterPage() {
         {/* Name Fields */}
         <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">First Name</label>
+            <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">{t('auth.firstName')}</label>
             <input
               {...register('first_name')}
               className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins']"
-              placeholder="First name"
+              placeholder={t('auth.firstNamePlaceholder')}
             />
             {errors.first_name && (
               <p className="mt-1 text-red-400 text-xs">{errors.first_name.message}</p>
             )}
           </div>
           <div>
-            <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">Last Name</label>
+            <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">{t('auth.lastName')}</label>
             <input
               {...register('last_name')}
               className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins']"
-              placeholder="Last name"
+              placeholder={t('auth.lastNamePlaceholder')}
             />
             {errors.last_name && (
               <p className="mt-1 text-red-400 text-xs">{errors.last_name.message}</p>
@@ -136,12 +138,12 @@ export default function RegisterPage() {
 
         {/* Email */}
         <div>
-          <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">Email</label>
+          <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">{t('auth.emailAddress')}</label>
           <input
             {...register('email')}
             type="email"
             className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins']"
-            placeholder="you@example.com"
+            placeholder={t('auth.emailPlaceholder')}
           />
           {errors.email && (
             <p className="mt-1 text-red-400 text-xs">{errors.email.message}</p>
@@ -151,25 +153,25 @@ export default function RegisterPage() {
         {/* Phone */}
         <div>
           <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">
-            Phone <span className="text-gray-600">(optional)</span>
+            {t('auth.phone')} <span className="text-gray-600">({t('auth.optional')})</span>
           </label>
           <input
             {...register('phone')}
             type="tel"
             className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins']"
-            placeholder="+20 1xx xxx xxxx"
+            placeholder={t('auth.phonePlaceholder')}
           />
         </div>
 
         {/* Password */}
         <div>
-          <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">Password</label>
+          <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">{t('auth.password')}</label>
           <div className="relative">
             <input
               {...register('password')}
               type={showPassword ? 'text' : 'password'}
               className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins'] pr-12"
-              placeholder="Min. 8 characters"
+              placeholder={t('auth.minPasswordPlaceholder')}
             />
             <button
               type="button"
@@ -187,13 +189,13 @@ export default function RegisterPage() {
         {/* Confirm Password */}
         <div>
           <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">
-            Confirm Password
+            {t('auth.confirmPassword')}
           </label>
           <input
             {...register('password_confirmation')}
             type="password"
             className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins']"
-            placeholder="Repeat password"
+            placeholder={t('auth.repeatPassword')}
           />
           {errors.password_confirmation && (
             <p className="mt-1 text-red-400 text-xs">{errors.password_confirmation.message}</p>
@@ -206,14 +208,14 @@ export default function RegisterPage() {
           className="w-full py-3 bg-white text-[#131313] font-['Poppins'] font-semibold rounded-lg hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isLoading && <Loader2 className="w-5 h-5 animate-spin" />}
-          {isLoading ? 'Creating Account...' : 'Create Account'}
+          {isLoading ? t('auth.creatingAccount') : t('auth.createAccount')}
         </button>
       </form>
 
       <p className="mt-6 text-center text-gray-400 font-['Poppins'] text-sm">
-        Already have an account?{' '}
+        {t('auth.hasAccount')}{' '}
         <Link to="/auth/login" className="text-white hover:underline">
-          Sign in
+          {t('auth.signInLink')}
         </Link>
       </p>
     </div>

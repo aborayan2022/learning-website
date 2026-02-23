@@ -1,5 +1,4 @@
 import { Outlet } from 'react-router';
-import { Toaster } from 'sonner';
 
 export function AuthLayout() {
   return (
@@ -7,7 +6,6 @@ export function AuthLayout() {
       <main className="flex-1 flex items-center justify-center">
         <Outlet />
       </main>
-      <Toaster position="top-right" richColors closeButton />
     </div>
   );
 }

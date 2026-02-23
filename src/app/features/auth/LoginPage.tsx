@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useAuthStore } from '../../store/auth.store';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -17,6 +18,7 @@ export default function LoginPage() {
   const { login, isLoading, error, clearError } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
   const [showPassword, setShowPassword] = useState(false);
 
   const returnUrl = (location.state as { returnUrl?: string })?.returnUrl;
@@ -49,10 +51,10 @@ export default function LoginPage() {
           <span className="font-['Poppins'] font-semibold text-[20px] text-white">Utopia</span>
         </Link>
         <h1 className="font-['Source_Sans_Pro'] font-bold text-3xl text-white mb-2">
-          Welcome Back
+          {t('auth.welcomeBack')}
         </h1>
         <p className="text-gray-400 font-['Poppins']">
-          Sign in to continue your learning journey
+          {t('auth.signInSubtitle')}
         </p>
       </div>
 
@@ -68,12 +70,12 @@ export default function LoginPage() {
 
         <div>
           <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">
-            Email Address
+            {t('auth.emailAddress')}
           </label>
           <input
             {...register('email')}
             type="email"
-            placeholder="you@example.com"
+            placeholder={t('auth.emailPlaceholder')}
             className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins']"
           />
           {errors.email && (
@@ -83,13 +85,13 @@ export default function LoginPage() {
 
         <div>
           <label className="block text-gray-300 text-sm font-['Poppins'] mb-2">
-            Password
+            {t('auth.password')}
           </label>
           <div className="relative">
             <input
               {...register('password')}
               type={showPassword ? 'text' : 'password'}
-              placeholder="••••••••"
+              placeholder={t('auth.passwordPlaceholder')}
               className="w-full px-4 py-3 bg-white/5 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/50 transition font-['Poppins'] pr-12"
             />
             <button
@@ -108,13 +110,13 @@ export default function LoginPage() {
         <div className="flex items-center justify-between">
           <label className="flex items-center gap-2 text-gray-400 text-sm cursor-pointer">
             <input type="checkbox" className="rounded border-gray-600" />
-            Remember me
+            {t('auth.rememberMe')}
           </label>
           <Link
             to="/auth/forgot-password"
             className="text-gray-400 text-sm hover:text-white transition"
           >
-            Forgot Password?
+            {t('auth.forgotPassword')}
           </Link>
         </div>
 
@@ -124,14 +126,14 @@ export default function LoginPage() {
           className="w-full py-3 bg-white text-[#131313] font-['Poppins'] font-semibold rounded-lg hover:bg-gray-100 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
         >
           {isLoading && <Loader2 className="w-5 h-5 animate-spin" />}
-          {isLoading ? 'Signing in...' : 'Sign In'}
+          {isLoading ? t('auth.signingIn') : t('auth.signIn')}
         </button>
       </form>
 
       <p className="mt-8 text-center text-gray-400 font-['Poppins'] text-sm">
-        Don't have an account?{' '}
+        {t('auth.noAccount')}{' '}
         <Link to="/auth/register" className="text-white hover:underline">
-          Create one
+          {t('auth.createOne')}
         </Link>
       </p>
     </div>

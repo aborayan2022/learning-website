@@ -76,7 +76,17 @@
     "resetNow": "Reset Password",
     "invalidResetLink": "Invalid or expired reset link. Please request a new one.",
     "minPassword": "Password must be at least 8 characters",
-    "passwordsNoMatch": "Passwords don't match"
+    "passwordsNoMatch": "Passwords don't match",
+    "validEmail": "Please enter a valid email address",
+    "minPassword6": "Password must be at least 6 characters",
+    "firstNameRequired": "First name is required",
+    "lastNameRequired": "Last name is required",
+    "selectRole": "Please select a role",
+    "failedResetLink": "Failed to send reset link. Please try again.",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "phonePlaceholder": "+20 1xx xxx xxxx",
+    "minPasswordPlaceholder": "Min. 8 characters"
   },
   "home": {
     "heroTitle1": "Learn from the Best,",

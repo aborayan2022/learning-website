@@ -4,6 +4,7 @@ import axios, {
   type InternalAxiosRequestConfig,
 } from 'axios';
 import { environment } from '../../../environments/environment';
+import { useAuthStore } from '../../store/auth.store';
 
 class ApiService {
   private readonly client: AxiosInstance;
@@ -20,7 +21,7 @@ class ApiService {
     // Request interceptor: attach auth token
     this.client.interceptors.request.use(
       (config: InternalAxiosRequestConfig) => {
-        const token = localStorage.getItem('auth_token');
+        const token = useAuthStore.getState().token;
         if (token) {
           config.headers.Authorization = `Bearer ${token}`;
         }
@@ -36,8 +37,8 @@ class ApiService {
         if (error.response) {
           switch (error.response.status) {
             case 401:
-              localStorage.removeItem('auth_token');
-              window.location.href = '/auth/login';
+              // Use store logout to clear state properly, avoid full page reload
+              useAuthStore.getState().logout();
               break;
             case 403:
               console.error('Forbidden: You do not have permission.');

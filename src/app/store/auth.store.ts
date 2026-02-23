@@ -49,7 +49,6 @@ export const useAuthStore = create<AuthState>()(
         set({ isLoading: true, error: null });
         try {
           const response = await authService.login({ email, password });
-          localStorage.setItem('auth_token', response.token);
           set({
             user: response.user,
             token: response.token,
@@ -81,7 +80,6 @@ export const useAuthStore = create<AuthState>()(
         set({ isLoading: true, error: null });
         try {
           const response = await authService.register(data);
-          localStorage.setItem('auth_token', response.token);
           set({
             user: response.user,
             token: response.token,
@@ -119,7 +117,6 @@ export const useAuthStore = create<AuthState>()(
       },
 
       logout: () => {
-        localStorage.removeItem('auth_token');
         set({
           user: null,
           token: null,
