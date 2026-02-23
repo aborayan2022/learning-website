@@ -1,0 +1,13 @@
+{
+  "files.exclude": {
+    "node_modules": true,
+    "dist": true,
+    ".git": false
+  },
+  "search.exclude": {
+    "node_modules": true,
+    "dist": true
+  },
+  "git.ignoredRepositories": [],
+  "git.decorations.enabled": true
+}
