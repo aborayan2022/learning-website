@@ -1,0 +1,354 @@
+import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
+import { Navbar } from '../app/components/layout/Navbar';
+import { Footer } from '../app/components/layout/Footer';
+import { Star, BookOpen, Users, Award, MessageCircle, ArrowRight, Heart } from 'lucide-react';
+
+const HERO_BG = 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&q=80';
+const HERO_SIDE = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80';
+const INSTRUCTOR_1 = 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80';
+const INSTRUCTOR_2 = 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&q=80';
+const INSTRUCTOR_3 = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80';
+const INSTRUCTOR_4 = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80';
+const TRAINING_1 = 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80';
+const TRAINING_2 = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80';
+const TEAM_IMG = 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&q=80';
+
+const CATEGORIES = [
+  { icon: '\u2B50', label: 'Trending', active: true },
+  { icon: '\uD83C\uDFA8', label: 'Design & Style' },
+  { icon: '\uD83D\uDCBC', label: 'Business' },
+  { icon: '\u270D\uFE0F', label: 'Writing' },
+  { icon: '\uD83C\uDFAD', label: 'Art & Entertainment' },
+  { icon: '\uD83C\uDFE0', label: 'Home & Lifestyle' },
+  { icon: '\uD83C\uDFB5', label: 'Music' },
+  { icon: '\uD83C\uDF73', label: 'Food' },
+  { icon: '\uD83D\uDD2C', label: 'Science & Tech' },
+];
+
+const INTEREST_TAGS = [
+  'professionalSkills',
+  'musician',
+  'becomeTutor',
+  'greatMusician',
+  'become',
+  'becomeChef',
+  'designingSkills',
+  'others',
+] as const;
+
+const INSTRUCTORS = [
+  { name: 'Daniel H. Pink', role: 'American Writer', img: INSTRUCTOR_1, badge: 'Popular' },
+  { name: 'Paul Krugman', role: 'American Economist', img: INSTRUCTOR_2, badge: 'New' },
+  { name: 'Sarah Johnson', role: 'Design Instructor', img: INSTRUCTOR_3, badge: 'Popular' },
+  { name: 'Ahmed Hassan', role: 'Tech Educator', img: INSTRUCTOR_4, badge: 'Featured' },
+];
+
+const FEATURES = [
+  {
+    icon: BookOpen,
+    titleKey: 'New Training Every Month',
+    desc: 'Opportunity to add new trainings uploaded every month at no additional cost!',
+  },
+  {
+    icon: MessageCircle,
+    titleKey: 'Live Q&A with All Trainers',
+    desc: 'Ask your questions by participating in the live question and answer activities.',
+  },
+  {
+    icon: Award,
+    titleKey: '+70 Training Programs',
+    desc: 'More than 70 trainings prepared by the "best" in their field!',
+  },
+];
+
+export default function HomePage() {
+  const { t } = useTranslation();
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-950">
+      <Navbar />
+
+      {/* HERO SECTION */}
+      <section className="relative bg-[#131313] overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={HERO_BG} alt="" className="w-full h-full object-cover" loading="eager" />
+          <div className="absolute inset-0 bg-[rgba(19,19,19,0.92)]" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="font-['Source_Sans_Pro',sans-serif] font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-[75px] text-white leading-tight">
+                {t('home.heroTitle1')}
+                <br />
+                {t('home.heroTitle2')}
+              </h1>
+              <p className="mt-6 text-gray-300 font-['Poppins',sans-serif] text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed">
+                {t('home.heroSubtitle')}
+              </p>
+              <div className="mt-6 h-[5px] w-[200px] sm:w-[323px] bg-white" />
+
+              <div className="mt-12">
+                <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-2xl sm:text-3xl lg:text-[40px] text-white">
+                  {t('home.whatBringsYou')}
+                </h2>
+                <p className="mt-2 text-gray-400 font-['Poppins',sans-serif] text-base sm:text-lg lg:text-xl">
+                  {t('home.chooseManyAsYouWant')}
+                </p>
+                <div className="flex flex-wrap gap-2 sm:gap-3 mt-5">
+                  {INTEREST_TAGS.map((key) => (
+                    <button
+                      key={key}
+                      className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-white/40 text-white font-['Poppins',sans-serif] text-sm sm:text-base hover:bg-white/10 transition"
+                    >
+                      {t(`home.${key}`)}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="hidden lg:block">
+              <div className="relative w-full max-w-md mx-auto aspect-[4/5]">
+                <img src={HERO_SIDE} alt="Students collaborating" className="w-full h-full object-cover rounded-2xl shadow-2xl" loading="eager" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* START YOUR JOURNEY CTA */}
+      <section className="py-16 sm:py-20 bg-white dark:bg-gray-950 text-center">
+        <div className="max-w-3xl mx-auto px-4">
+          <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-[64px] text-[#131313] dark:text-white">
+            {t('home.startJourney')}
+          </h2>
+          <Link
+            to="/teachers"
+            className="inline-block mt-6 px-8 py-3 sm:py-4 bg-[#131313] dark:bg-white text-white dark:text-[#131313] font-['Poppins',sans-serif] font-medium text-base sm:text-lg rounded-xl hover:opacity-90 transition"
+          >
+            {t('home.exploreClasses')}
+          </Link>
+        </div>
+      </section>
+
+      {/* FEATURE CARDS */}
+      <section className="py-12 sm:py-16 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {FEATURES.map((f) => (
+              <div
+                key={f.titleKey}
+                className="bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 sm:p-8 flex items-start gap-4 hover:shadow-lg transition"
+              >
+                <div className="shrink-0 w-12 h-12 sm:w-14 sm:h-14 bg-gray-100 dark:bg-gray-700 rounded-xl flex items-center justify-center">
+                  <f.icon className="w-6 h-6 text-[#131313] dark:text-white" />
+                </div>
+                <div>
+                  <h3 className="font-['Poppins',sans-serif] font-semibold text-base sm:text-lg text-black dark:text-white">{f.titleKey}</h3>
+                  <p className="mt-1 text-gray-500 dark:text-gray-400 font-['Poppins',sans-serif] text-xs sm:text-sm leading-relaxed">{f.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CATEGORIES */}
+      <section className="py-16 sm:py-20 bg-[#131313]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-3xl sm:text-4xl lg:text-5xl text-white text-center leading-snug">
+            {t('home.topCategories')}
+          </h2>
+          <p className="mt-3 text-gray-400 text-center font-['Poppins',sans-serif] text-base sm:text-lg">
+            {t('home.broadSelection')}
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3 mt-10">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat.label}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-white font-['Poppins',sans-serif] text-sm sm:text-base transition ${
+                  cat.active ? 'border border-white bg-transparent' : 'bg-[#2e2e2e] hover:bg-[#3a3a3a]'
+                }`}
+              >
+                <span>{cat.icon}</span>
+                {cat.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-12">
+            {INSTRUCTORS.map((inst) => (
+              <div key={inst.name} className="bg-white rounded-xl overflow-hidden group cursor-pointer hover:shadow-xl transition">
+                <div className="relative h-52 sm:h-64 overflow-hidden">
+                  <img src={inst.img} alt={inst.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+                  <div className="absolute inset-0 bg-black/20" />
+                  <span className="absolute top-3 right-3 bg-white/80 text-black text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded">{inst.badge}</span>
+                </div>
+                <div className="p-4">
+                  <h4 className="font-['Poppins',sans-serif] font-bold text-lg sm:text-xl text-black">{inst.name}</h4>
+                  <p className="text-gray-500 font-['Poppins',sans-serif] text-sm">{inst.role}</p>
+                  <p className="text-gray-400 text-xs mt-1">2 hour 58 minutes</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* OUR TRAINERS */}
+      <section className="py-16 sm:py-20 bg-[#131313]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-['Source_Sans_Pro',sans-serif] font-semibold text-2xl sm:text-3xl lg:text-4xl text-white mb-8">
+            {t('home.topInstructors')}
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {INSTRUCTORS.map((inst, i) => (
+              <Link key={`trainer-${i}`} to="/teachers" className="relative h-72 sm:h-96 rounded-xl overflow-hidden group block">
+                <img src={inst.img} alt={inst.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 className="font-['Poppins',sans-serif] font-bold text-lg sm:text-xl leading-tight">
+                    Group Culture and Musician Education
+                  </h3>
+                  <p className="font-['Poppins',sans-serif] text-sm text-gray-300 mt-1">{inst.name}</p>
+                  <span className="mt-3 inline-block px-4 py-2 border border-white/60 rounded-lg text-white text-xs sm:text-sm font-['Poppins',sans-serif] hover:bg-white/10 transition">
+                    View Tutorial
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW AND POPULAR TRAININGS */}
+      <section className="py-16 sm:py-20 bg-white dark:bg-gray-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-['Source_Sans_Pro',sans-serif] font-semibold text-2xl sm:text-3xl lg:text-4xl text-[#131313] dark:text-white mb-8 text-center">
+            New and Popular Trainings
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[TRAINING_1, TRAINING_2].map((img, i) => (
+              <div key={i} className="relative h-64 sm:h-80 lg:h-[438px] rounded-xl overflow-hidden group cursor-pointer">
+                <img src={img} alt="Training" className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy" />
+                <div className="absolute inset-0 bg-black/40" />
+                <button className="absolute top-4 left-4 text-white hover:text-red-400 transition">
+                  <Heart className="w-7 h-7" />
+                </button>
+                <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 flex items-end justify-between">
+                  <div>
+                    <h3 className="font-['Poppins',sans-serif] font-semibold text-lg sm:text-2xl text-white leading-tight">
+                      Climate Change: Cause<br />and Solution
+                    </h3>
+                  </div>
+                  <span className="font-['Poppins',sans-serif] font-bold text-xl sm:text-2xl text-white shrink-0 ml-4">$40.90</span>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link
+              to="/teachers"
+              className="inline-flex items-center gap-2 px-6 py-3 border border-[#131313] dark:border-white text-[#131313] dark:text-white rounded-lg font-['Poppins',sans-serif] font-medium text-base hover:bg-[#131313] hover:text-white dark:hover:bg-white dark:hover:text-[#131313] transition"
+            >
+              Show More <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* TEAM / CTA SECTION */}
+      <section className="py-16 sm:py-20 bg-[#131313]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div className="order-2 lg:order-1">
+              <img src={TEAM_IMG} alt="Team collaboration" className="w-full h-64 sm:h-80 lg:h-[400px] object-cover rounded-xl" loading="lazy" />
+            </div>
+            <div className="order-1 lg:order-2">
+              <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+                Let your team learn from the best names
+              </h2>
+              <Link
+                to="/auth/register"
+                className="inline-block mt-8 px-6 py-3 sm:py-4 bg-white text-[#131313] font-['Poppins',sans-serif] font-medium text-base sm:text-lg rounded-xl hover:bg-gray-100 transition"
+              >
+                Let Us Contact You
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* TESTIMONIALS */}
+      <section className="py-16 sm:py-20 bg-white dark:bg-gray-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="font-['Source_Sans_Pro',sans-serif] font-semibold text-2xl sm:text-3xl lg:text-[45px] text-[#131313] dark:text-white text-center mb-10">
+            {t('home.testimonials')}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[1, 2].map((i) => (
+              <div key={i} className="bg-[#2e2e2e] rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+                <div className="absolute -top-12 -right-8 w-40 h-40 rounded-full bg-gray-400/10" />
+                <div className="absolute -top-16 -right-16 w-40 h-40 rounded-full bg-gray-400/10" />
+                <div className="relative">
+                  <div className="flex gap-1 mb-4">
+                    {[1, 2, 3, 4, 5].map((s) => (
+                      <Star key={s} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                    ))}
+                  </div>
+                  <p className="text-white/80 font-['Poppins',sans-serif] text-sm sm:text-base leading-relaxed mb-6">
+                    "This platform transformed my learning experience. The trainers are world-class and the interactive sessions make complex topics easy to understand."
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gray-500 flex items-center justify-center text-white font-bold">
+                      {i === 1 ? 'S' : 'A'}
+                    </div>
+                    <div>
+                      <p className="text-white font-['Poppins',sans-serif] font-semibold text-sm">
+                        {i === 1 ? 'Sarah Mitchell' : 'Ahmed Omar'}
+                      </p>
+                      <p className="text-gray-400 text-xs">
+                        {i === 1 ? 'Design Student' : 'Business Graduate'}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="py-16 sm:py-20 bg-gray-50 dark:bg-gray-900 text-center">
+        <div className="max-w-3xl mx-auto px-4">
+          <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-3xl sm:text-4xl lg:text-5xl text-[#131313] dark:text-white">
+            {t('home.readyToStart')}
+          </h2>
+          <p className="mt-4 text-gray-500 dark:text-gray-400 font-['Poppins',sans-serif] text-base sm:text-lg">
+            {t('home.readySubtitle')}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+            <Link
+              to="/auth/register"
+              className="px-8 py-3 bg-[#131313] dark:bg-white text-white dark:text-[#131313] font-['Poppins',sans-serif] font-semibold rounded-xl hover:opacity-90 transition"
+            >
+              {t('home.getStarted')}
+            </Link>
+            <Link
+              to="/teachers"
+              className="px-8 py-3 border border-[#131313] dark:border-white text-[#131313] dark:text-white font-['Poppins',sans-serif] font-medium rounded-xl hover:bg-[#131313] hover:text-white dark:hover:bg-white dark:hover:text-[#131313] transition"
+            >
+              {t('home.browseCourses')}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
+  );
+}

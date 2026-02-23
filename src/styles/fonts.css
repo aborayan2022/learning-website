@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/axiforma');
+
+/* Fallback font definitions */
+@font-face {
+  font-family: 'Poppins:Regular';
+  src: local('Poppins'), local('Poppins Regular');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Poppins:Medium';
+  src: local('Poppins'), local('Poppins Medium');
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: 'Poppins:SemiBold';
+  src: local('Poppins'), local('Poppins SemiBold');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Poppins:Bold';
+  src: local('Poppins'), local('Poppins Bold');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Source_Sans_Pro:Regular';
+  src: local('Source Sans Pro'), local('Source Sans Pro Regular');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Source_Sans_Pro:SemiBold';
+  src: local('Source Sans Pro'), local('Source Sans Pro SemiBold');
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: 'Source_Sans_Pro:Bold';
+  src: local('Source Sans Pro'), local('Source Sans Pro Bold');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Axiforma:Medium';
+  src: local('Axiforma'), local('Axiforma Medium');
+  font-weight: 500;
+}
