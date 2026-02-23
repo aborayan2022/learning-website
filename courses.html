@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Courses – LearnHub</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="nav-brand">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        LearnHub
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="courses.html">Courses</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button id="theme-toggle" aria-label="Toggle dark mode">🌙</button>
+        <a href="courses.html" class="btn btn-primary">Get Started</a>
+        <button class="nav-hamburger" aria-label="Open menu">&#9776;</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="page-header">
+    <div class="container">
+      <h1>All Courses</h1>
+      <p>Find the perfect course to start or advance your learning journey.</p>
+    </div>
+  </header>
+
+  <!-- Courses -->
+  <section class="courses-section">
+    <div class="container">
+
+      <!-- Search & Filter -->
+      <div class="search-section">
+        <div class="search-bar">
+          <input type="text" id="search-input" placeholder="Search courses…" aria-label="Search courses" />
+          <button aria-label="Search">🔍</button>
+        </div>
+        <div class="filter-row">
+          <button class="filter-btn active" data-category="all">All</button>
+          <button class="filter-btn" data-category="webdev">Web Dev</button>
+          <button class="filter-btn" data-category="data">Data Science</button>
+          <button class="filter-btn" data-category="design">Design</button>
+          <button class="filter-btn" data-category="mobile">Mobile</button>
+          <button class="filter-btn" data-category="devops">DevOps</button>
+        </div>
+      </div>
+
+      <div class="courses-grid">
+        <!-- Web Dev -->
+        <div class="course-card" data-title="HTML & CSS Fundamentals" data-category="webdev">
+          <div class="course-thumb" style="background:#dbeafe">🌐</div>
+          <div class="course-body">
+            <span class="badge badge-blue">Web Dev</span>
+            <h3 class="course-title">HTML &amp; CSS Fundamentals</h3>
+            <p class="course-desc">Build your first webpage from scratch. Learn semantic HTML and modern CSS layouts.</p>
+            <div class="course-meta"><span>🕒 8 hours</span><span>👤 12,400 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-title="JavaScript Essentials" data-category="webdev">
+          <div class="course-thumb" style="background:#fef3c7">⚡</div>
+          <div class="course-body">
+            <span class="badge badge-yellow">Web Dev</span>
+            <h3 class="course-title">JavaScript Essentials</h3>
+            <p class="course-desc">Master the language of the web. Variables, functions, DOM manipulation and async programming.</p>
+            <div class="course-meta"><span>🕒 14 hours</span><span>👤 18,900 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.9
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-title="React – Build Modern UIs" data-category="webdev">
+          <div class="course-thumb" style="background:#e0f2fe">⚛️</div>
+          <div class="course-body">
+            <span class="badge badge-blue">Web Dev</span>
+            <h3 class="course-title">React – Build Modern UIs</h3>
+            <p class="course-desc">Components, hooks, state management and deployment with the world's most popular UI library.</p>
+            <div class="course-meta"><span>🕒 18 hours</span><span>👤 31,000 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.9
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-title="Node.js Backend Development" data-category="webdev">
+          <div class="course-thumb" style="background:#d1fae5">🟢</div>
+          <div class="course-body">
+            <span class="badge badge-green">Web Dev</span>
+            <h3 class="course-title">Node.js Backend Development</h3>
+            <p class="course-desc">Build REST APIs, handle authentication and connect to databases using Node.js and Express.</p>
+            <div class="course-meta"><span>🕒 16 hours</span><span>👤 11,500 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.6
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <!-- Data Science -->
+        <div class="course-card" data-title="Python for Data Science" data-category="data">
+          <div class="course-thumb" style="background:#d1fae5">🐍</div>
+          <div class="course-body">
+            <span class="badge badge-green">Data Science</span>
+            <h3 class="course-title">Python for Data Science</h3>
+            <p class="course-desc">Learn Python, NumPy, pandas and data visualisation to analyse real-world datasets.</p>
+            <div class="course-meta"><span>🕒 20 hours</span><span>👤 22,000 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.7
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-title="Machine Learning Fundamentals" data-category="data">
+          <div class="course-thumb" style="background:#e0e7ff">🤖</div>
+          <div class="course-body">
+            <span class="badge badge-purple">Data Science</span>
+            <h3 class="course-title">Machine Learning Fundamentals</h3>
+            <p class="course-desc">Understand supervised and unsupervised learning, model evaluation and scikit-learn in practice.</p>
+            <div class="course-meta"><span>🕒 25 hours</span><span>👤 17,800 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <!-- Design -->
+        <div class="course-card" data-title="UI/UX Design Principles" data-category="design">
+          <div class="course-thumb" style="background:#ede9fe">🎨</div>
+          <div class="course-body">
+            <span class="badge badge-purple">Design</span>
+            <h3 class="course-title">UI/UX Design Principles</h3>
+            <p class="course-desc">Create beautiful, user-friendly interfaces. Explore Figma, prototyping and design systems.</p>
+            <div class="course-meta"><span>🕒 12 hours</span><span>👤 9,600 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-title="Graphic Design for Beginners" data-category="design">
+          <div class="course-thumb" style="background:#fce7f3">✏️</div>
+          <div class="course-body">
+            <span class="badge badge-purple">Design</span>
+            <h3 class="course-title">Graphic Design for Beginners</h3>
+            <p class="course-desc">Typography, colour theory, branding and layout fundamentals using free design tools.</p>
+            <div class="course-meta"><span>🕒 10 hours</span><span>👤 7,300 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.6
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="course-card" data-title="Flutter Mobile Development" data-category="mobile">
+          <div class="course-thumb" style="background:#cffafe">📱</div>
+          <div class="course-body">
+            <span class="badge badge-blue">Mobile</span>
+            <h3 class="course-title">Flutter Mobile Development</h3>
+            <p class="course-desc">Build beautiful cross-platform apps for iOS and Android using Flutter and Dart.</p>
+            <div class="course-meta"><span>🕒 22 hours</span><span>👤 14,200 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.7
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <!-- DevOps -->
+        <div class="course-card" data-title="Docker & Kubernetes" data-category="devops">
+          <div class="course-thumb" style="background:#dbeafe">🐳</div>
+          <div class="course-body">
+            <span class="badge badge-blue">DevOps</span>
+            <h3 class="course-title">Docker &amp; Kubernetes</h3>
+            <p class="course-desc">Containerise your apps, manage deployments and scale services with modern DevOps tools.</p>
+            <div class="course-meta"><span>🕒 18 hours</span><span>👤 8,900 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-title="CI/CD with GitHub Actions" data-category="devops">
+          <div class="course-thumb" style="background:#d1fae5">⚙️</div>
+          <div class="course-body">
+            <span class="badge badge-green">DevOps</span>
+            <h3 class="course-title">CI/CD with GitHub Actions</h3>
+            <p class="course-desc">Automate your build, test, and deploy pipelines with GitHub Actions workflows.</p>
+            <div class="course-meta"><span>🕒 10 hours</span><span>👤 6,100 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.7
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+
+        <div class="course-card" data-title="SQL & Database Design" data-category="data">
+          <div class="course-thumb" style="background:#fef3c7">🗄️</div>
+          <div class="course-body">
+            <span class="badge badge-yellow">Data Science</span>
+            <h3 class="course-title">SQL &amp; Database Design</h3>
+            <p class="course-desc">Write powerful SQL queries, design relational schemas and optimise database performance.</p>
+            <div class="course-meta"><span>🕒 15 hours</span><span>👤 13,400 students</span></div>
+          </div>
+          <div class="course-footer">
+            <div class="course-rating">
+              <svg viewBox="0 0 24 24" fill="#f59e0b" width="16" height="16"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              4.8
+            </div>
+            <button class="btn btn-primary" style="padding:0.4rem 0.9rem;font-size:0.82rem" onclick="alert('Enrolled! 🎉')">Enroll Free</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-results">No courses match your search. Try a different keyword or category.</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">LearnHub</div>
+          <p class="footer-tagline">Empowering learners worldwide with quality, free education.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Learn</h4>
+          <ul>
+            <li><a href="courses.html">All Courses</a></li>
+            <li><a href="courses.html">Web Development</a></li>
+            <li><a href="courses.html">Data Science</a></li>
+            <li><a href="courses.html">Design</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="about.html">Our Team</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 LearnHub. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
