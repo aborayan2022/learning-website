@@ -26,6 +26,12 @@ const SubscriptionPlansPage = lazy(() => import('./features/subscriptions/Subscr
 const ResetPasswordPage = lazy(() => import('./features/auth/ResetPasswordPage'));
 const PaymentPage = lazy(() => import('./features/payment/PaymentPage'));
 const NotFoundPage = lazy(() => import('./features/not-found/NotFoundPage'));
+const SettingsPage = lazy(() => import('./features/settings/SettingsPage'));
+const AboutPage = lazy(() => import('./features/about/AboutPage'));
+const HelpPage = lazy(() => import('./features/help/HelpPage'));
+const ContactPage = lazy(() => import('./features/contact/ContactPage'));
+const PrivacyPage = lazy(() => import('./features/legal/PrivacyPage'));
+const TermsPage = lazy(() => import('./features/legal/TermsPage'));
 
 function Fallback() {
   return <LoadingSpinner fullPage text="Loading..." />;
@@ -45,6 +51,11 @@ export default function App() {
             <Route path="/teachers" element={<TeacherSearchPage />} />
             <Route path="/teachers/:id" element={<TeacherProfilePage />} />
             <Route path="/plans" element={<SubscriptionPlansPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/help" element={<HelpPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy" element={<PrivacyPage />} />
+            <Route path="/terms" element={<TermsPage />} />
           </Route>
 
           {/* ── Auth routes (guest only) ── */}
@@ -57,6 +68,9 @@ export default function App() {
 
           {/* ── Protected routes with MainLayout ── */}
           <Route element={<AuthGuard><MainLayout /></AuthGuard>}>
+            {/* Settings */}
+            <Route path="/settings" element={<SettingsPage />} />
+
             {/* Payment */}
             <Route path="/payment" element={<PaymentPage />} />
 

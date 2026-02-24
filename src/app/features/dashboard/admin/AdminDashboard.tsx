@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 import { adminService } from '../../../core/services/admin.service';
 import {
   Users,
@@ -148,8 +149,8 @@ function AdminLink({
   desc: string;
 }) {
   return (
-    <a
-      href={href}
+    <Link
+      to={href}
       className="flex items-center gap-4 p-5 bg-white border border-gray-200 rounded-xl hover:shadow-md transition"
     >
       <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500">
@@ -159,6 +160,6 @@ function AdminLink({
         <p className="font-['Poppins'] font-semibold">{title}</p>
         <p className="text-sm text-gray-400">{desc}</p>
       </div>
-    </a>
+    </Link>
   );
 }

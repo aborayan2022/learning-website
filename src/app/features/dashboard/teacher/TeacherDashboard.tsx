@@ -4,6 +4,7 @@ import { useAuthStore } from '../../../store/auth.store';
 import { useBookingStore } from '../../../store/booking.store';
 import { teacherProfileService } from '../../../core/services/teacher-profile.service';
 import { subscriptionService } from '../../../core/services/subscription.service';
+import type { TeacherUser } from '../../../core/models/user.model';
 import type { TeacherSubscription } from '../../../core/models/subscription.model';
 import {
   Calendar,
@@ -54,7 +55,7 @@ export default function TeacherDashboard() {
             <span className="text-sm text-gray-500">Rating</span>
           </div>
           <p className="text-2xl font-bold text-[#131313]">
-            {(user as any)?.teacherProfile?.avg_rating || '—'}
+            {(user as TeacherUser)?.teacher_profile?.avg_rating || '—'}
           </p>
         </div>
 
@@ -64,7 +65,7 @@ export default function TeacherDashboard() {
             <span className="text-sm text-gray-500">Total Students</span>
           </div>
           <p className="text-2xl font-bold text-[#131313]">
-            {(user as any)?.teacherProfile?.total_bookings || 0}
+            {(user as TeacherUser)?.teacher_profile?.total_bookings || 0}
           </p>
         </div>
 
