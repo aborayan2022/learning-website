@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '../app/components/layout/Navbar';
 import { Footer } from '../app/components/layout/Footer';
-import { Star, BookOpen, Users, Award, MessageCircle, ArrowRight, Heart } from 'lucide-react';
+import { Star, BookOpen, Users, Award, MessageCircle, ArrowRight, Heart, Sparkles } from 'lucide-react';
 
 const HERO_BG = 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=1600&q=80';
 const HERO_SIDE = 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80';
@@ -62,6 +63,52 @@ const FEATURES = [
   },
 ];
 
+const TypewriterText = ({ phrases }: { phrases: string[] }) => {
+  const [index, setIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(0);
+  const [reverse, setReverse] = useState(false);
+  const [blink, setBlink] = useState(true);
+
+  // Blinking cursor
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setBlink((prev) => !prev);
+    }, 500);
+    return () => clearTimeout(timeout);
+  }, [blink]);
+
+  // Main typing logic
+  useEffect(() => {
+    if (index === phrases.length) return;
+
+    if (subIndex === phrases[index].length + 1 && !reverse) {
+      // Pause at the end of typing
+      const timeout = setTimeout(() => setReverse(true), 2500);
+      return () => clearTimeout(timeout);
+    }
+
+    if (subIndex === 0 && reverse) {
+      // Move to next phrase after deleting
+      setReverse(false);
+      setIndex((prev) => (prev + 1) % phrases.length);
+      return;
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1));
+    }, reverse ? 40 : 120);
+
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse, phrases]);
+
+  return (
+    <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-indigo-800 to-indigo-600 dark:from-white dark:via-indigo-200 dark:to-indigo-400">
+      {`${phrases[index].substring(0, subIndex)}`}
+      <span className={`inline-block w-[4px] h-[0.9em] bg-indigo-600 dark:bg-indigo-300 ml-1 translate-y-[2px] ${blink ? 'opacity-100' : 'opacity-0'}`} />
+    </span>
+  );
+};
+
 export default function HomePage() {
   const { t } = useTranslation();
 
@@ -76,31 +123,31 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-[rgba(19,19,19,0.92)]" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 lg:py-32">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-14">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
-              <h1 className="font-['Source_Sans_Pro',sans-serif] font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-[75px] text-white leading-tight">
+              <h1 className="font-['Source_Sans_Pro',sans-serif] font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-[62px] text-white leading-tight">
                 {t('home.heroTitle1')}
                 <br />
                 {t('home.heroTitle2')}
               </h1>
-              <p className="mt-6 text-gray-300 font-['Poppins',sans-serif] text-base sm:text-lg lg:text-xl max-w-xl leading-relaxed">
+              <p className="mt-3 text-gray-300 font-['Poppins',sans-serif] text-sm sm:text-base lg:text-lg max-w-xl leading-relaxed">
                 {t('home.heroSubtitle')}
               </p>
-              <div className="mt-6 h-[5px] w-[200px] sm:w-[323px] bg-white" />
+              <div className="mt-3 h-[3px] w-[180px] sm:w-[280px] bg-white" />
 
-              <div className="mt-12">
-                <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-2xl sm:text-3xl lg:text-[40px] text-white">
+              <div className="mt-6">
+                <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-xl sm:text-2xl lg:text-[32px] text-white leading-tight">
                   {t('home.whatBringsYou')}
                 </h2>
-                <p className="mt-2 text-gray-400 font-['Poppins',sans-serif] text-base sm:text-lg lg:text-xl">
+                <p className="mt-1 text-gray-400 font-['Poppins',sans-serif] text-sm sm:text-base lg:text-lg">
                   {t('home.chooseManyAsYouWant')}
                 </p>
-                <div className="flex flex-wrap gap-2 sm:gap-3 mt-5">
+                <div className="flex flex-wrap gap-2 mt-3">
                   {INTEREST_TAGS.map((key) => (
                     <button
                       key={key}
-                      className="px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-white/40 text-white font-['Poppins',sans-serif] text-sm sm:text-base hover:bg-white/10 transition"
+                      className="px-4 py-2 rounded-lg border border-white/30 text-white font-['Poppins',sans-serif] text-xs sm:text-sm hover:bg-white/10 transition"
                     >
                       {t(`home.${key}`)}
                     </button>
@@ -110,7 +157,7 @@ export default function HomePage() {
             </div>
 
             <div className="hidden lg:block">
-              <div className="relative w-full max-w-md mx-auto aspect-[4/5]">
+              <div className="relative w-full max-w-sm ml-auto aspect-[4/5] lg:aspect-[3.5/4]">
                 <img src={HERO_SIDE} alt="Students collaborating" className="w-full h-full object-cover rounded-2xl shadow-2xl" loading="eager" />
               </div>
             </div>
@@ -119,17 +166,43 @@ export default function HomePage() {
       </section>
 
       {/* START YOUR JOURNEY CTA */}
-      <section className="py-16 sm:py-20 bg-white dark:bg-gray-950 text-center">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-3xl sm:text-4xl lg:text-5xl xl:text-[64px] text-[#131313] dark:text-white">
-            {t('home.startJourney')}
+      <section className="py-20 sm:py-28 relative overflow-hidden bg-white dark:bg-gray-950 text-center">
+        {/* Background Decorative Glows */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-indigo-400/5 blur-[100px] rounded-full pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto px-4 relative z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-800 rounded-full text-indigo-600 dark:text-indigo-400 text-sm font-medium mb-6 animate-bounce">
+            <Sparkles className="w-4 h-4" />
+            <span>ابدأ الآن واستفد من العروض القائمة</span>
+          </div>
+
+          <h2 className="font-['Source_Sans_Pro',sans-serif] font-bold text-4xl sm:text-5xl lg:text-6xl xl:text-[72px] text-[#131313] dark:text-white leading-tight min-h-[1.2em]">
+            <TypewriterText phrases={[
+              t('home.startJourney'),
+              t('home.learnFromBest'),
+              "كُن أفضل نسخة من نفسك"
+            ]} />
           </h2>
+
+          <p className="mt-6 text-gray-500 dark:text-gray-400 font-['Poppins',sans-serif] text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
+            انضم إلى آلاف الطلاب الذين غيروا حياتهم بالتعلم من خلال خبراء يوتوبيا.
+          </p>
+
           <Link
             to="/teachers"
-            className="inline-block mt-6 px-8 py-3 sm:py-4 bg-[#131313] dark:bg-white text-white dark:text-[#131313] font-['Poppins',sans-serif] font-medium text-base sm:text-lg rounded-xl hover:opacity-90 transition"
+            className="group relative inline-flex items-center gap-3 mt-10 px-10 py-4 sm:py-5 bg-[#131313] dark:bg-white text-white dark:text-[#131313] font-['Poppins',sans-serif] font-bold text-lg sm:text-xl rounded-2xl overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl hover:shadow-indigo-500/20"
           >
-            {t('home.exploreClasses')}
+            {/* Shiny background effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+            <span>{t('home.exploreClasses')}</span>
+            <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </Link>
+
+          <div className="mt-12 flex justify-center items-center gap-6 grayscale opacity-50 dark:invert">
+             {/* Simple list of brand placeholders to make it look "established" */}
+             <div className="text-sm font-bold tracking-widest text-gray-400">TRUSTED BY 500+ SCHOOLS</div>
+          </div>
         </div>
       </section>
 

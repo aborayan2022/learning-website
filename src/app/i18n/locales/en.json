@@ -124,6 +124,11 @@
     "getStarted": "Get Started Free",
     "browseCourses": "Browse Courses"
   },
+  "cta": {
+    "typewriter1": "Start your journey today",
+    "typewriter2": "Learn new skills",
+    "typewriter3": "Achieve your goals"
+  },
   "teachers": {
     "findPerfectTeacher": "Find Your Perfect Teacher",
     "showingNearLocation": "Showing teachers near your location",

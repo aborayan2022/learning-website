@@ -1,11 +1,10 @@
 import { apiService } from './api.service';
+import type { ApiResponse } from '../models/api-response.model';
 import type { User } from '../models/user.model';
 
-interface AuthResponse {
+interface AuthData {
   user: User;
   token: string;
-  token_type: string;
-  expires_in: number;
 }
 
 interface LoginPayload {
@@ -24,16 +23,18 @@ interface RegisterPayload {
 }
 
 export const authService = {
-  login(payload: LoginPayload): Promise<AuthResponse> {
-    return apiService.post('/v1/auth/login', payload);
+  async login(payload: LoginPayload): Promise<AuthData> {
+    const res = await apiService.post<ApiResponse<AuthData>>('/v1/auth/login', payload);
+    return res.data;
   },
 
-  register(payload: RegisterPayload): Promise<AuthResponse> {
-    return apiService.post('/v1/auth/register', payload);
+  async register(payload: RegisterPayload): Promise<AuthData> {
+    const res = await apiService.post<ApiResponse<AuthData>>('/v1/auth/register', payload);
+    return res.data;
   },
 
   getProfile(): Promise<User> {
-    return apiService.get<{ data: User }>('/v1/auth/me').then((r) => r.data);
+    return apiService.get<ApiResponse<User>>('/v1/auth/me').then((r) => r.data);
   },
 
   logout(): Promise<void> {
@@ -54,7 +55,7 @@ export const authService = {
   },
 
   updateProfile(data: Partial<User>): Promise<User> {
-    return apiService.put<{ data: User }>('/v1/auth/profile', data).then((r) => r.data);
+    return apiService.put<ApiResponse<User>>('/v1/auth/profile', data).then((r) => r.data);
   },
 
   changePassword(data: {

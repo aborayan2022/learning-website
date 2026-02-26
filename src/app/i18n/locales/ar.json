@@ -124,6 +124,11 @@
     "getStarted": "ابدأ مجاناً",
     "browseCourses": "تصفح الدورات"
   },
+  "cta": {
+    "typewriter1": "ابدأ رحلتك اليوم",
+    "typewriter2": "تعلم مهارات جديدة",
+    "typewriter3": "حقق أهدافك"
+  },
   "teachers": {
     "findPerfectTeacher": "ابحث عن معلمك المثالي",
     "showingNearLocation": "عرض المعلمين بالقرب من موقعك",

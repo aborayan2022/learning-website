@@ -1,4 +1,12 @@
-@import 'tailwindcss' source(none);
+@import 'tailwindcss';
 @source '../**/*.{js,ts,jsx,tsx}';
 
 @import 'tw-animate-css';
+
+@theme {
+  --animate-shimmer: shimmer 2.5s infinite linear;
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
+}
